@@ -24,6 +24,7 @@ export interface SiteSettings {
   heroLocation: string;
   heroVolume: string;
   heroSub: string;
+  heroImage?: string;
 }
 
 export interface Project {

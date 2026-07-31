@@ -66,7 +66,7 @@ export default async function CapabilitiesPage() {
       </section>
 
       {/* EXPANDED DESCRIPTIONS */}
-      <section className="wrap" style={{ padding: 'var(--space-xxl) 0' }}>
+      <section className="wrap" style={{ paddingTop: 'var(--space-xxl)', paddingBottom: 'var(--space-xxl)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 400px), 1fr))', gap: 'var(--space-lg)' }}>
           {capabilities.map(({ num, name, tag, description }, i) => (
             <ScrollReveal key={num} delay={i * 0.08}>

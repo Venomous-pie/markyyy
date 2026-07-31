@@ -30,7 +30,7 @@ export default async function ContactPage() {
       </section>
 
       {/* CONTACT FORM */}
-      <section className="wrap" style={{ padding: 'var(--space-xxl) 0' }}>
+      <section className="wrap" style={{ paddingTop: 'var(--space-xxl)', paddingBottom: 'var(--space-xxl)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 560px), 1fr))', gap: 'var(--space-xxl)', alignItems: 'start' }}>
 
           {/* FORM */}

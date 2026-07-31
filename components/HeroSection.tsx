@@ -10,9 +10,10 @@ interface HeroProps {
   location: string;
   volume: string;
   sub: string;
+  image?: string;
 }
 
-export default function HeroSection({ role, location, volume, sub }: HeroProps) {
+export default function HeroSection({ role, location, volume, sub, image }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +64,7 @@ export default function HeroSection({ role, location, volume, sub }: HeroProps) 
         style={{ y: floatingY }}
       >
         <Image
-          src="/sample_2.jpg"
+          src={image || "/sample_2.jpg"}
           alt="Editorial design showcase"
           fill
           style={{ objectFit: 'cover' }}

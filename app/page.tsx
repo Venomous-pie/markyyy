@@ -21,6 +21,7 @@ export default async function Home() {
         location={settings.heroLocation}
         volume={settings.heroVolume}
         sub={settings.heroSub}
+        image={settings.heroImage}
       />
 
       {/* MANIFESTO */}

@@ -22,7 +22,7 @@ export default async function AboutPage() {
       </div>
 
       {/* INTRO SECTION */}
-      <section className="wrap" style={{ padding: 'var(--space-xxl) 0', borderTop: '1px solid var(--line)' }}>
+      <section className="wrap" style={{ paddingTop: 'var(--space-xxl)', paddingBottom: 'var(--space-xxl)', borderTop: '1px solid var(--line)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 460px), 1fr))', gap: 'var(--space-xl)', alignItems: 'start' }}>
           <ScrollReveal>
             <div style={{ position: 'relative', aspectRatio: '3/4', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
@@ -82,7 +82,7 @@ export default async function AboutPage() {
       </section>
 
       {/* RECOGNITION */}
-      <section className="wrap" style={{ padding: 'var(--space-xxl) 0', borderBottom: '1px solid var(--line)' }}>
+      <section className="wrap" style={{ paddingTop: 'var(--space-xxl)', paddingBottom: 'var(--space-xxl)', borderBottom: '1px solid var(--line)' }}>
         <ScrollReveal>
           <p className="eyebrow" style={{ marginBottom: 'var(--space-xl)' }}>
             <span className="dot" />Recognition

@@ -17,6 +17,7 @@ interface SiteSettings {
   heroLocation: string;
   heroVolume: string;
   heroSub: string;
+  heroImage?: string;
 }
 
 const fieldStyle = {
@@ -114,6 +115,10 @@ export default function SettingsPage() {
             <div>
               <label style={labelStyle}>Subtext / Introduction</label>
               <textarea style={{ ...fieldStyle, resize: 'vertical', minHeight: '80px' }} value={form.heroSub} onChange={e => { setSaved(false); setForm({ ...form, heroSub: e.target.value }); }} />
+            </div>
+            <div>
+              <label style={labelStyle}>Floating Media Image URL</label>
+              <input style={fieldStyle} value={form.heroImage || ''} onChange={e => { setSaved(false); setForm({ ...form, heroImage: e.target.value }); }} placeholder="/sample_2.jpg or /uploads/my-image.jpg" />
             </div>
           </div>
         </div>
