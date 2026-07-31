@@ -2,8 +2,8 @@
   "settings": {
     "studioName": "markyyy.",
     "tagline": "Design that gives brands something to say",
-    "email": "hello@markyyy.placeholder",
-    "phone": "+00 000 000 000",
+    "email": "cabanelism@gmail.com",
+    "phone": "09514603038",
     "socials": {
       "instagram": "https://instagram.com",
       "behance": "https://behance.net",
@@ -29,12 +29,16 @@
       "title": "Nova — Brand Identity",
       "category": "Brand Identity",
       "year": "2026",
-      "tags": ["Identity", "Print", "Art Direction"],
+      "tags": [
+        "Identity",
+        "Print",
+        "Art Direction"
+      ],
       "description": "Strategic positioning and visual identity for a tech startup challenging category norms with a human-centric approach.",
       "longDescription": "Nova approached us with a challenge: how do you build a brand in a saturated market that feels genuinely human? We started with strategy, mapping their audience, competitors, and cultural context before a single mark was drawn.",
-      "image": "/sample_1.jpg",
+      "image": "/uploads/1785521651282-PASADO_logo.png",
       "gallery": [],
-      "videoUrl": "",
+      "videoUrl": "https://m.youtube.com/watch?v=_SX-ZCdwHVo&list=RD_SX-ZCdwHVo&start_radio=1",
       "challenge": "The tech space is flooded with cold, geometric brands that prioritize speed over substance. Nova needed to feel approachable, warm, and trustworthy—without sacrificing the sense of forward momentum that the category demands.",
       "solution": "We developed a visual identity anchored in a custom wordmark drawn from humanist type principles, paired with an editorial-inspired system of photography, texture, and a muted-yet-vivid palette.",
       "outcome": "Nova launched to press coverage in four major design publications and reported a 40% increase in inbound inquiries in the three months following rebrand.",
@@ -46,7 +50,11 @@
       "title": "Twice — Editorial Design",
       "category": "Editorial Design",
       "year": "2025",
-      "tags": ["Editorial", "Typography", "Layout"],
+      "tags": [
+        "Editorial",
+        "Typography",
+        "Layout"
+      ],
       "description": "A 200-page biannual publication exploring the intersection of architecture and digital culture through bespoke typography.",
       "longDescription": "Twice is a biannual publication that had an exceptional editorial voice but a layout system that was struggling to keep pace with the ambition of its content. We were brought in to redesign the publication from the ground up.",
       "image": "/sample_2.jpg",
@@ -63,7 +71,11 @@
       "title": "Verdant — Packaging System",
       "category": "Packaging",
       "year": "2025",
-      "tags": ["Packaging", "Illustration", "Print"],
+      "tags": [
+        "Packaging",
+        "Illustration",
+        "Print"
+      ],
       "description": "Sustainable structural packaging and labeling system for a premium skincare line focusing on minimal, tactile materials.",
       "longDescription": "Verdant came to us with a commitment to sustainability and a product that genuinely delivered. They needed packaging that could communicate luxury and ecological responsibility simultaneously.",
       "image": "/sample_3.jpg",
@@ -80,7 +92,11 @@
       "title": "Meridian — Digital Platform",
       "category": "Web & Digital",
       "year": "2024",
-      "tags": ["Web Design", "Brand System", "UX"],
+      "tags": [
+        "Web Design",
+        "Brand System",
+        "UX"
+      ],
       "description": "Comprehensive digital platform and design system overhaul for an international arts institution.",
       "longDescription": "Meridian Arts had accumulated years of technical debt in their digital presence. Multiple CMS systems, inconsistent branding, and a user experience that failed to match the quality of their programming.",
       "image": "/sample_4.jpg",

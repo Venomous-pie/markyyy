@@ -104,7 +104,26 @@ export default async function CaseStudyPage({ params }: Props) {
             {project.videoUrl && (
               <ScrollReveal delay={0.1}>
                 <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: 'var(--space-xl)', borderRadius: 'var(--radius-md)' }}>
-                  <iframe src={project.videoUrl} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} frameBorder="0" allowFullScreen />
+                  <iframe 
+                    src={(() => {
+                      const url = project.videoUrl;
+                      if (!url) return url;
+                      try {
+                        if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                          const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+                          if (match && match[1]) return `https://www.youtube.com/embed/${match[1]}`;
+                        }
+                        if (url.includes('vimeo.com')) {
+                          const match = url.match(/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
+                          if (match && match[3]) return `https://player.vimeo.com/video/${match[3]}`;
+                        }
+                      } catch (e) {}
+                      return url;
+                    })()} 
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} 
+                    frameBorder="0" 
+                    allowFullScreen 
+                  />
                 </div>
               </ScrollReveal>
             )}

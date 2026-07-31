@@ -180,24 +180,60 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
             {isNew ? 'New Project' : form.title}
           </h1>
         </div>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <div className="editor-actions">
           {!isNew && (
-            <button onClick={handleDelete} disabled={deleting} style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', background: 'rgba(255,50,50,0.1)', border: '1px solid rgba(255,80,80,0.2)', color: 'rgba(255,120,120,0.9)', padding: '10px 20px', borderRadius: 'var(--radius-pill)', cursor: 'pointer' }}>
+            <button onClick={handleDelete} disabled={deleting} style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', background: 'rgba(255,50,50,0.1)', border: '1px solid rgba(255,80,80,0.2)', color: 'rgba(255,120,120,0.9)', padding: '10px 20px', borderRadius: 'var(--radius-pill)', cursor: 'pointer', whiteSpace: 'nowrap' }}>
               {deleting ? 'Deleting…' : 'Delete Project'}
             </button>
           )}
           {!isNew && (
-            <a href={`/work/${initial.slug}`} target="_blank" style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', background: 'rgba(252,252,254,0.08)', border: '1px solid rgba(252,252,254,0.12)', color: 'rgba(252,252,254,0.7)', padding: '10px 20px', borderRadius: 'var(--radius-pill)', textDecoration: 'none' }}>
+            <a href={`/work/${initial.slug}`} target="_blank" style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', background: 'rgba(252,252,254,0.08)', border: '1px solid rgba(252,252,254,0.12)', color: 'rgba(252,252,254,0.7)', padding: '10px 20px', borderRadius: 'var(--radius-pill)', textDecoration: 'none', whiteSpace: 'nowrap', textAlign: 'center' }}>
               ↗ View Live
             </a>
           )}
-          <button onClick={handleSave} disabled={saving} style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', background: saved ? '#16a34a' : 'var(--blue)', color: '#fff', padding: '10px 24px', borderRadius: 'var(--radius-pill)', border: 'none', cursor: 'pointer', transition: 'background 0.3s ease' }}>
+          <button onClick={handleSave} disabled={saving} style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', background: saved ? '#16a34a' : 'var(--blue)', color: '#fff', padding: '10px 24px', borderRadius: 'var(--radius-pill)', border: 'none', cursor: 'pointer', transition: 'background 0.3s ease', whiteSpace: 'nowrap' }}>
             {saving ? 'Saving…' : saved ? '✓ Saved' : 'Save Changes'}
           </button>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '16px', alignItems: 'start' }}>
+      <style>{`
+        .editor-actions {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+        .editor-grid {
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 16px;
+          align-items: start;
+        }
+        @media (max-width: 860px) {
+          .editor-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        @media (max-width: 640px) {
+          .editor-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            margin-top: 8px;
+          }
+          .editor-actions > :last-child {
+            grid-column: 1 / -1;
+          }
+          .editor-actions > * {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+          }
+        }
+      `}</style>
+      <div className="editor-grid">
         {/* MAIN COLUMN */}
         <div>
           {/* BASICS */}
