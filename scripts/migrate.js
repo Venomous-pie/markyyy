@@ -4,8 +4,11 @@ const path = require('path');
 async function migrate() {
   require('dotenv').config({ path: path.join(__dirname, '../.env.local') });
   
-  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-    console.error('Missing KV_REST_API_URL or KV_REST_API_TOKEN in .env.local');
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!url || !token) {
+    console.error('Missing KV_REST_API_URL or UPSTASH_REDIS_REST_URL in .env.local');
     process.exit(1);
   }
 
@@ -17,12 +20,12 @@ async function migrate() {
 
   const data = fs.readFileSync(contentPath, 'utf8');
   
-  console.log('Uploading content to Vercel KV...');
+  console.log('Uploading content to Vercel KV / Upstash Redis...');
   
-  const response = await fetch(`${process.env.KV_REST_API_URL}/set/site-content`, {
+  const response = await fetch(`${url}/set/site-content`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
     body: data

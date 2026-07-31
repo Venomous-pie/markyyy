@@ -1,6 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import { kv } from '@vercel/kv';
+import { createClient } from '@vercel/kv';
+
+const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+
+const kv = (kvUrl && kvToken) ? createClient({ url: kvUrl, token: kvToken }) : null;
 
 const CONTENT_PATH = path.join(process.cwd(), 'content', 'content.json');
 
@@ -46,7 +51,7 @@ export interface SiteContent {
 }
 
 export async function readContent(): Promise<SiteContent> {
-  if (process.env.KV_REST_API_URL || process.env.KV_URL) {
+  if (kv) {
     try {
       const data = await kv.get<SiteContent>('site-content');
       if (data) return data;
@@ -59,7 +64,7 @@ export async function readContent(): Promise<SiteContent> {
 }
 
 export async function writeContent(content: SiteContent): Promise<void> {
-  if (process.env.KV_REST_API_URL || process.env.KV_URL) {
+  if (kv) {
     await kv.set('site-content', content);
   }
   // Try to sync to disk for local development
