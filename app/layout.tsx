@@ -26,6 +26,7 @@ const spaceMono = Space_Mono({
 });
 
 import PublicLayout from '@/components/PublicLayout';
+import Blinders from '@/components/Blinders';
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable} ${spaceMono.variable}`}>
       <body>
+        <Blinders />
         <PublicLayout
           header={<Header />}
           footer={<Footer />}

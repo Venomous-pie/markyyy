@@ -275,7 +275,7 @@ h1.hero-headline {
   z-index: 20;
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(3.2rem, 9vw, 8.5rem);
+  font-size: clamp(2rem, 9vw, 8.5rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   margin-left: -0.04em;
@@ -314,6 +314,8 @@ h1.hero-headline em {
   line-height: 1.1;
   padding-bottom: 0.1em;
 }
+.hero-line:nth-child(2) { margin-left: 4%; }
+.hero-line:nth-child(3) { margin-left: 8%; }
 @media (min-width: 768px) {
   .hero-line:nth-child(2) { margin-left: 8%; }
   .hero-line:nth-child(3) { margin-left: 16%; }
@@ -944,3 +946,19 @@ a:focus-visible, button:focus-visible {
   width: fit-content;
 }
 .form-submit:hover { background: var(--blue-deep); transform: translateY(-4px); }
+
+/* -------------------- PAGE TRANSITION (BLINDERS) -------------------- */
+.blinders-container {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.blinder {
+  flex: 1;
+  background-color: var(--blue);
+  width: 100%;
+  transform-origin: top;
+}
