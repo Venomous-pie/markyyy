@@ -4,6 +4,11 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+const navItems = [
+  { href: '/studio/dashboard', label: 'Overview', icon: '◒' },
+  { href: '/studio/dashboard/projects', label: 'Projects', icon: '■' },
+  { href: '/studio/dashboard/settings', label: 'Settings', icon: '⚙' },
+];
 const styles = `
   .studio-layout { display: flex; flex-direction: column; min-height: 100vh; background: #0E0F14; }
   .studio-sidebar { 
