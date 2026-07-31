@@ -103,16 +103,31 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
 
   const uploadImage = async (file: File, field: 'image' | 'gallery') => {
     setUploading(true);
-    const fd = new FormData();
-    fd.append('file', file);
-    const res = await fetch('/api/upload', { method: 'POST', body: fd });
-    const { url } = await res.json();
-    if (field === 'image') {
-      set('image', url);
-    } else {
-      set('gallery', [...form.gallery, url]);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(data?.error || `Upload failed with status ${res.status}`);
+      }
+      
+      if (data && data.url) {
+        if (field === 'image') {
+          set('image', data.url);
+        } else {
+          set('gallery', [...form.gallery, data.url]);
+        }
+      } else {
+        throw new Error('No URL returned from server');
+      }
+    } catch (e: any) {
+      console.error(e);
+      alert(e.message || 'Image upload failed. The file might be too large.');
+    } finally {
+      setUploading(false);
     }
-    setUploading(false);
   };
 
   const addTag = () => {

@@ -24,7 +24,7 @@ export default async function ProjectsListPage() {
       <div style={{ display: 'grid', gap: '12px' }}>
         {projects.map((p) => (
           <div key={p.slug} style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px',
             padding: 'var(--space-5) var(--space-6)',
             background: 'rgba(252,252,254,0.03)',
             border: '1px solid rgba(222,225,234,0.08)',

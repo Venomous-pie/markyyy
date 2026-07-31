@@ -62,7 +62,7 @@ export default function SettingsPage() {
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '16px' }}>
         {/* BASICS */}
         <div style={sectionStyle}>
           <p style={{ ...labelStyle, fontSize: '0.72rem', color: 'var(--blue)', marginBottom: '16px' }}>Basic Info</p>
@@ -145,7 +145,7 @@ export default function SettingsPage() {
               <label style={labelStyle}>Testimonial Quote</label>
               <textarea style={{ ...fieldStyle, resize: 'vertical', minHeight: '80px', marginBottom: '12px' }} value={form.testimonial.quote} onChange={e => { setSaved(false); setForm({ ...form, testimonial: { ...form.testimonial, quote: e.target.value } }); }} />
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
                 <div>
                   <label style={labelStyle}>Author</label>
                   <input style={fieldStyle} value={form.testimonial.author} onChange={e => { setSaved(false); setForm({ ...form, testimonial: { ...form.testimonial, author: e.target.value } }); }} />

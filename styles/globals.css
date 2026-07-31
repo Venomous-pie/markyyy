@@ -44,7 +44,12 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { 
+  scroll-behavior: smooth; 
+  font-size: 16px; 
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -58,6 +63,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -113,9 +119,13 @@ ul { list-style: none; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
+  line-height: 1.5;
+}
+.eyebrow .dot {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.6em;
+  margin-bottom: 0.15em;
 }
 
 /* --- DOT MOTIF --- */
@@ -426,6 +436,13 @@ h1.hero-headline em {
   padding: var(--space-xl) 0 var(--space-lg);
   border-bottom: 1px solid var(--line);
   margin-bottom: var(--space-lg);
+}
+@media (max-width: 640px) {
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
 }
 .section-head h2 {
   font-family: var(--display);
