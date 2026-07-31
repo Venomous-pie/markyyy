@@ -104,24 +104,46 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
   const uploadImage = async (file: File, field: 'image' | 'gallery') => {
     setUploading(true);
     try {
-      const fd = new FormData();
-      fd.append('file', file);
-      const res = await fetch('/api/upload', { method: 'POST', body: fd });
-      
-      const data = await res.json().catch(() => null);
-      if (!res.ok) {
-        throw new Error(data?.error || `Upload failed with status ${res.status}`);
-      }
-      
-      if (data && data.url) {
-        if (field === 'image') {
-          set('image', data.url);
-        } else {
-          set('gallery', [...form.gallery, data.url]);
-        }
+      // 1. Check which upload provider is active
+      const configRes = await fetch('/api/upload');
+      const { provider } = await configRes.json();
+
+      let finalUrl = '';
+
+      if (provider === 'vercel-blob') {
+        // Use client-side upload to bypass 4.5MB Serverless Function limits
+        const { upload } = await import('@vercel/blob/client');
+        const newBlob = await upload(file.name, file, {
+          access: 'public',
+          handleUploadUrl: '/api/upload',
+        });
+        finalUrl = newBlob.url;
       } else {
-        throw new Error('No URL returned from server');
+        // Local Fallback
+        const fd = new FormData();
+        fd.append('file', file);
+        const res = await fetch('/api/upload', { method: 'POST', body: fd });
+        
+        const data = await res.json().catch(() => null);
+        if (!res.ok) {
+          throw new Error(data?.error || `Upload failed with status ${res.status}`);
+        }
+        
+        if (data && data.url) {
+          finalUrl = data.url;
+        } else {
+          throw new Error('No URL returned from server');
+        }
       }
+
+      if (finalUrl) {
+        if (field === 'image') {
+          set('image', finalUrl);
+        } else {
+          set('gallery', [...form.gallery, finalUrl]);
+        }
+      }
+
     } catch (e: any) {
       console.error(e);
       alert(e.message || 'Image upload failed. The file might be too large.');
