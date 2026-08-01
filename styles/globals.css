@@ -1368,3 +1368,60 @@ button:focus-visible {
   width: 100%;
   transform-origin: top;
 }
+
+/* --- FORMS --- */
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6) var(--space-4);
+}
+
+@media (min-width: 600px) {
+  .contact-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.form-field.full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-sm);
+  font-family: var(--body);
+  font-size: 1rem;
+  color: var(--ink);
+  transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.form-field textarea {
+  min-height: 160px;
+  resize: vertical;
+}

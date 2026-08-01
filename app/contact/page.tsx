@@ -31,7 +31,7 @@ export default async function ContactPage() {
 
       {/* CONTACT FORM */}
       <section className="wrap" style={{ paddingTop: 'var(--space-xxl)', paddingBottom: 'var(--space-xxl)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 560px), 1fr))', gap: 'var(--space-xxl)', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: 'var(--space-xxl)', alignItems: 'start' }}>
 
           {/* FORM */}
           <div>
@@ -49,7 +49,7 @@ export default async function ContactPage() {
               Tell us about<br />your project
             </h2>
 
-            <ContactForm />
+            <ContactForm targetEmail={settings.email} />
           </div>
 
           {/* CONTACT INFO */}
