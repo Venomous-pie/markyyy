@@ -7,6 +7,9 @@ export interface Project {
   description: string;
   longDescription: string;
   image: string;
+  imagePosition?: string;
+  gallery?: string[];
+  galleryPositions?: string[];
   challenge: string;
   solution: string;
   outcome: string;

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import SmartImage from '@/components/SmartImage';
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -22,6 +22,7 @@ export default async function Home() {
         volume={settings.heroVolume}
         sub={settings.heroSub}
         image={settings.heroImage}
+        imagePosition={settings.heroImagePosition}
       />
 
       {/* MANIFESTO */}
@@ -47,12 +48,13 @@ export default async function Home() {
           {projects.map((project, i) => (
             <article key={project.slug} className="work-item">
               <ScrollReveal className="work-visual" delay={0.1}>
-                <Image
+                <SmartImage
                   src={project.image}
                   alt={project.title}
                   fill
                   className="work-img"
                   sizes="(max-width: 860px) 100vw, 58vw"
+                  objectPosition={project.imagePosition}
                 />
               </ScrollReveal>
               <ScrollReveal className="work-info" delay={0.25}>

@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
-import { motion, useScroll, useTransform, useAnimation, stagger, animate } from 'framer-motion';
+import SmartImage from '@/components/SmartImage';
+import { motion, useScroll, useTransform, stagger, animate } from 'framer-motion';
 import { useRef } from 'react';
 
 interface HeroProps {
@@ -11,9 +11,10 @@ interface HeroProps {
   volume: string;
   sub: string;
   image?: string;
+  imagePosition?: string;
 }
 
-export default function HeroSection({ role, location, volume, sub, image }: HeroProps) {
+export default function HeroSection({ role, location, volume, sub, image, imagePosition }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
 
@@ -63,11 +64,11 @@ export default function HeroSection({ role, location, volume, sub, image }: Hero
         className="hero-floating-media"
         style={{ y: floatingY }}
       >
-        <Image
+        <SmartImage
           src={image || "/sample_2.jpg"}
           alt="Editorial design showcase"
           fill
-          style={{ objectFit: 'cover' }}
+          objectPosition={imagePosition}
           priority
         />
       </motion.div>

@@ -25,6 +25,7 @@ export interface SiteSettings {
   heroVolume: string;
   heroSub: string;
   heroImage?: string;
+  heroImagePosition?: string;
 }
 
 export interface Project {
@@ -36,7 +37,9 @@ export interface Project {
   description: string;
   longDescription: string;
   image: string;
+  imagePosition?: string;
   gallery: string[];
+  galleryPositions?: string[];
   videoUrl: string;
   challenge: string;
   solution: string;
@@ -66,7 +69,11 @@ export async function readContent(): Promise<SiteContent> {
 
 export async function writeContent(content: SiteContent): Promise<void> {
   if (kv) {
-    await kv.set('site-content', content);
+    try {
+      await kv.set('site-content', content);
+    } catch (e) {
+      console.warn('Failed to write to Vercel KV, falling back to local file.', e);
+    }
   }
   // Try to sync to disk for local development
   try {

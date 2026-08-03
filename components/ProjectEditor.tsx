@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import ImagePositionControl from '@/components/ImagePositionControl';
 
 interface Project {
   slug: string;
@@ -20,6 +20,8 @@ interface Project {
   outcome: string;
   featured: boolean;
   order: number;
+  imagePosition?: string;
+  galleryPositions?: string[];
 }
 
 interface ProjectEditorProps {
@@ -140,7 +142,7 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
         if (field === 'image') {
           set('image', finalUrl);
         } else {
-          set('gallery', [...form.gallery, finalUrl]);
+          set('gallery', [...(form.gallery || []), finalUrl]);
         }
       }
 
@@ -165,7 +167,13 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
   };
 
   const removeGalleryImage = (url: string) => {
-    set('gallery', form.gallery.filter((u) => u !== url));
+    const index = (form.gallery || []).findIndex((u) => u === url);
+    if (index !== -1) {
+      set('gallery', form.gallery.filter((_, i) => i !== index));
+      if (form.galleryPositions) {
+        set('galleryPositions', form.galleryPositions.filter((_, i) => i !== index));
+      }
+    }
   };
 
   return (
@@ -299,10 +307,16 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
             {/* Hero Image */}
             <div style={{ marginBottom: '20px' }}>
               <label style={labelStyle}>Hero / Cover Image</label>
-              <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                 {form.image && (
-                  <div style={{ position: 'relative', width: '120px', height: '80px', borderRadius: '6px', overflow: 'hidden', flexShrink: 0 }}>
-                    <Image src={form.image} alt="Hero" fill style={{ objectFit: 'cover' }} sizes="120px" />
+                  <div style={{ width: '180px', flexShrink: 0 }}>
+                    <ImagePositionControl 
+                      src={form.image} 
+                      position={form.imagePosition} 
+                      onChange={(pos) => set('imagePosition', pos)} 
+                      aspectRatio="4/3"
+                    />
+                    <p style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'rgba(252,252,254,0.4)', marginTop: '8px' }}>Click image to set focal point</p>
                   </div>
                 )}
                 <div style={{ flex: 1 }}>
@@ -319,12 +333,19 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
             <div style={{ marginBottom: '20px' }}>
               <label style={labelStyle}>Gallery Images <span style={{ color: 'rgba(252,252,254,0.2)' }}>(shown on case study page)</span></label>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
-                {form.gallery.map((url) => (
-                  <div key={url} style={{ position: 'relative' }}>
-                    <div style={{ width: '80px', height: '60px', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
-                      <Image src={url} alt="Gallery" fill style={{ objectFit: 'cover' }} sizes="80px" />
-                    </div>
-                    <button onClick={() => removeGalleryImage(url)} style={{ position: 'absolute', top: '-6px', right: '-6px', width: '18px', height: '18px', borderRadius: '50%', background: '#ef4444', border: 'none', color: '#fff', fontSize: '0.7rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+                {(form.gallery || []).map((url, i) => (
+                  <div key={url} style={{ position: 'relative', width: '120px' }}>
+                    <ImagePositionControl 
+                      src={url} 
+                      position={form.galleryPositions?.[i] || '50% 50%'} 
+                      onChange={(pos) => {
+                        const newPositions = [...(form.galleryPositions || (form.gallery || []).map(() => '50% 50%'))];
+                        newPositions[i] = pos;
+                        set('galleryPositions', newPositions);
+                      }} 
+                      aspectRatio="4/3"
+                    />
+                    <button onClick={() => removeGalleryImage(url)} style={{ position: 'absolute', top: '-6px', right: '-6px', width: '18px', height: '18px', borderRadius: '50%', background: '#ef4444', border: 'none', color: '#fff', fontSize: '0.7rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>×</button>
                   </div>
                 ))}
                 <input ref={galleryFileRef} type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={e => {

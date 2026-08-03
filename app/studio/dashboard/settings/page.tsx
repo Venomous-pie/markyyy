@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ImagePositionControl from '@/components/ImagePositionControl';
 
 interface SiteSettings {
   studioName: string;
@@ -18,6 +19,7 @@ interface SiteSettings {
   heroVolume: string;
   heroSub: string;
   heroImage?: string;
+  heroImagePosition?: string;
 }
 
 const fieldStyle = {
@@ -118,7 +120,18 @@ export default function SettingsPage() {
             </div>
             <div>
               <label style={labelStyle}>Floating Media Image URL</label>
-              <input style={fieldStyle} value={form.heroImage || ''} onChange={e => { setSaved(false); setForm({ ...form, heroImage: e.target.value }); }} placeholder="/sample_2.jpg or /uploads/my-image.jpg" />
+              <input style={{...fieldStyle, marginBottom: '12px'}} value={form.heroImage || ''} onChange={e => { setSaved(false); setForm({ ...form, heroImage: e.target.value }); }} placeholder="/sample_2.jpg or /uploads/my-image.jpg" />
+              {form.heroImage && (
+                <div style={{ width: '200px' }}>
+                  <ImagePositionControl 
+                    src={form.heroImage} 
+                    position={form.heroImagePosition} 
+                    onChange={(pos) => { setSaved(false); setForm({ ...form, heroImagePosition: pos }); }} 
+                    aspectRatio="3/4"
+                  />
+                  <p style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'rgba(252,252,254,0.4)', marginTop: '8px' }}>Click image to set focal point</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

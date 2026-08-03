@@ -21,8 +21,7 @@
     "heroRole": "Graphic Designer",
     "heroLocation": "Based Anywhere, Working Everywhere",
     "heroVolume": "Selected Works — Vol. 01",
-    "heroSub": "markyyy. is a graphic design practice building identities, editorial systems, and visual worlds for clients who want to be looked at twice.",
-    "heroImage": "/sample_2.jpg"
+    "heroSub": "markyyy. is a graphic design practice building identities, editorial systems, and visual worlds for clients who want to be looked at twice."
   },
   "projects": [
     {
@@ -37,14 +36,15 @@
       ],
       "description": "Strategic positioning and visual identity for a tech startup challenging category norms with a human-centric approach.",
       "longDescription": "Nova approached us with a challenge: how do you build a brand in a saturated market that feels genuinely human? We started with strategy, mapping their audience, competitors, and cultural context before a single mark was drawn.",
-      "image": "/uploads/1785521651282-PASADO_logo.png",
+      "image": "/uploads/1785768349556-095e135e-0bef-48fd-b9bf-efbf02621c2d.jpg",
       "gallery": [],
       "videoUrl": "https://m.youtube.com/watch?v=_SX-ZCdwHVo&list=RD_SX-ZCdwHVo&start_radio=1",
       "challenge": "The tech space is flooded with cold, geometric brands that prioritize speed over substance. Nova needed to feel approachable, warm, and trustworthy—without sacrificing the sense of forward momentum that the category demands.",
       "solution": "We developed a visual identity anchored in a custom wordmark drawn from humanist type principles, paired with an editorial-inspired system of photography, texture, and a muted-yet-vivid palette.",
       "outcome": "Nova launched to press coverage in four major design publications and reported a 40% increase in inbound inquiries in the three months following rebrand.",
       "featured": true,
-      "order": 0
+      "order": 0,
+      "imagePosition": "98.31% 0.35% 1.20"
     },
     {
       "slug": "editorial-twice-magazine",
@@ -89,8 +89,8 @@
       "order": 2
     },
     {
-      "slug": "digital-meridian",
-      "title": "Meridian — Digital Platform",
+      "slug": "manpro-ui-biometric-design",
+      "title": "ManPro — Biometric UI Design",
       "category": "Web & Digital",
       "year": "2024",
       "tags": [
@@ -100,7 +100,7 @@
       ],
       "description": "Comprehensive digital platform and design system overhaul for an international arts institution.",
       "longDescription": "Meridian Arts had accumulated years of technical debt in their digital presence. Multiple CMS systems, inconsistent branding, and a user experience that failed to match the quality of their programming.",
-      "image": "/sample_4.jpg",
+      "image": "https://uhpg9e1zhs4husx8.public.blob.vercel-storage.com/ManPro%20Biometric.png",
       "gallery": [],
       "videoUrl": "",
       "challenge": "A 15-year-old institution with disparate digital touchpoints, a diverse global audience, and a board of directors who needed to see ROI—not just beautiful design.",

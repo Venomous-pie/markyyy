@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import SmartImage from '@/components/SmartImage';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -57,14 +57,14 @@ export default async function CaseStudyPage({ params }: Props) {
       {/* HERO IMAGE */}
       <div className="wrap">
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', borderRadius: 'var(--radius-md)' }}>
-          <Image
+          <SmartImage
             src={project.image}
             alt={project.title}
             fill
             className="case-hero-img"
-            style={{ objectFit: 'cover' }}
             priority
             sizes="(max-width: 1400px) 100vw, 1400px"
+            objectPosition={project.imagePosition}
           />
         </div>
       </div>
@@ -93,7 +93,13 @@ export default async function CaseStudyPage({ params }: Props) {
                 {project.gallery.map((img, i) => (
                   <ScrollReveal key={img} delay={0.1}>
                     <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                      <Image src={img} alt={`${project.title} detail`} fill style={{ objectFit: 'cover' }} sizes="(max-width: 960px) 100vw, 66vw" />
+                      <SmartImage 
+                        src={img} 
+                        alt={`${project.title} detail`} 
+                        fill 
+                        sizes="(max-width: 960px) 100vw, 66vw" 
+                        objectPosition={project.galleryPositions?.[i]}
+                      />
                     </div>
                   </ScrollReveal>
                 ))}
