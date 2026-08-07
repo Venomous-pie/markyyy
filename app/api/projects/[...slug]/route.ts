@@ -3,13 +3,14 @@ import { requireOwner } from '@/lib/session';
 import { readContent, writeContent } from '@/lib/content';
 import { revalidatePath } from 'next/cache';
 
-export async function PUT(req: NextRequest, props: { params: Promise<{ slug: string }> }) {
+export async function PUT(req: NextRequest, props: { params: Promise<{ slug: string[] }> }) {
   if (!(await requireOwner())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const params = await props.params;
+  const slugString = params.slug.map(decodeURIComponent).join('/');
   const updatedProject = await req.json();
   const content = await readContent();
 
-  const index = content.projects.findIndex(p => p.slug === params.slug);
+  const index = content.projects.findIndex(p => p.slug === slugString);
   if (index === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   content.projects[index] = updatedProject;
@@ -18,12 +19,13 @@ export async function PUT(req: NextRequest, props: { params: Promise<{ slug: str
   return NextResponse.json({ ok: true });
 }
 
-export async function DELETE(req: NextRequest, props: { params: Promise<{ slug: string }> }) {
+export async function DELETE(req: NextRequest, props: { params: Promise<{ slug: string[] }> }) {
   if (!(await requireOwner())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const params = await props.params;
+  const slugString = params.slug.map(decodeURIComponent).join('/');
   const content = await readContent();
 
-  const index = content.projects.findIndex(p => p.slug === params.slug);
+  const index = content.projects.findIndex(p => p.slug === slugString);
   if (index === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   content.projects.splice(index, 1);

@@ -266,7 +266,7 @@ export default function ProjectEditor({ project: initial, isNew = false }: Proje
               </div>
               <div>
                 <label style={labelStyle}>URL Slug</label>
-                <input style={fieldStyle} value={form.slug} onChange={e => set('slug', e.target.value.toLowerCase().replace(/\s+/g, '-'))} placeholder="brand-identity-nova" />
+                <input style={fieldStyle} value={form.slug} onChange={e => set('slug', e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''))} placeholder="brand-identity-nova" />
                 <p style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'rgba(252,252,254,0.25)', marginTop: '6px' }}>URL: /work/{form.slug}</p>
               </div>
             </div>
